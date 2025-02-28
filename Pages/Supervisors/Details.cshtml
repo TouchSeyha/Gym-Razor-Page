@@ -1,0 +1,84 @@
+﻿@page
+@model Gym.Pages.Supervisors.DetailsModel
+
+@{
+    ViewData["Title"] = "Supervisor Details";
+    ViewData["Subtitle"] = "View supervisor information";
+}
+
+<div class="row mb-4">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-person-badge me-2"></i>@Model.Supervisor.FullName
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-3 text-center mb-3 mb-md-0">
+                        <div class="avatar-lg bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
+                            @Model.Supervisor.FullName.Substring(0, 1)
+                        </div>
+                        <h5 class="mb-1">@Model.Supervisor.FullName</h5>
+                        <p class="text-muted mb-0">@Model.Supervisor.Gender</p>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row g-0">
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-calendar me-2 text-muted"></i>Birth Date</strong>
+                                <div class="mt-1">@Html.DisplayFor(m => m.Supervisor.DateOfBirth)</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-telephone me-2 text-muted"></i>Phone</strong>
+                                <div class="mt-1">
+                                    <a href="tel:@Model.Supervisor.PhoneNumber" class="text-decoration-none">
+                                        @Html.DisplayFor(m => m.Supervisor.PhoneNumber)
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-envelope me-2 text-muted"></i>Email</strong>
+                                <div class="mt-1">
+                                    <a href="mailto:@Model.Supervisor.Email" class="text-decoration-none">
+                                        @Html.DisplayFor(m => m.Supervisor.Email)
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-person-badge me-2 text-muted"></i>Username</strong>
+                                <div class="mt-1">@Html.DisplayFor(m => m.Supervisor.Login)</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-shield-lock me-2 text-muted"></i>Password</strong>
+                                <div class="mt-1">••••••••</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-info-circle me-2 text-muted"></i>Status</strong>
+                                <div class="mt-1">@Html.DisplayFor(m => m.Supervisor.Status)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light">
+                <div class="d-flex justify-content-between">
+                    <a asp-page="./Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i> Back to List
+                    </a>
+                    <a asp-page="./Edit" asp-route-id="@Model.Supervisor.Id" class="btn btn-warning">
+                        <i class="bi bi-pencil me-1"></i> Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .avatar-lg {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+    }
+</style>

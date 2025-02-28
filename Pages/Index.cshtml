@@ -1,0 +1,74 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Gym Management System</h1>
+    <p>Select a section below to manage your gym resources.</p>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Customers</h5>
+            </div>
+            <div class="card-body">
+                <p>Manage gym customers and memberships.</p>
+                <a class="btn btn-primary" asp-page="/Customers/Index">Manage Customers</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Coaches</h5>
+            </div>
+            <div class="card-body">
+                <p>Manage gym coaches and trainers.</p>
+                <a class="btn btn-primary" asp-page="/Coaches/Index">Manage Coaches</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Gym Halls</h5>
+            </div>
+            <div class="card-body">
+                <p>Manage gym facilities and spaces.</p>
+                <a class="btn btn-primary" asp-page="/GymHalls/Index">Manage Gym Halls</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Schedules</h5>
+            </div>
+            <div class="card-body">
+                <p>Manage training sessions and bookings.</p>
+                <a class="btn btn-primary" asp-page="/Schedules/Index">Manage Schedules</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Supervisors</h5>
+            </div>
+            <div class="card-body">
+                <p>Manage gym supervisors and staff.</p>
+                <a class="btn btn-primary" asp-page="/Supervisors/Index">Manage Supervisors</a>
+            </div>
+        </div>
+    </div>
+</div>

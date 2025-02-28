@@ -1,0 +1,179 @@
+﻿@page
+@model Gym.Pages.Coaches.EditModel
+
+@{
+    ViewData["Title"] = "Edit Coach";
+    ViewData["Subtitle"] = "Update coach information";
+}
+
+<div class="row mb-4">
+    <div class="col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-person-badge me-2"></i>Coach Details
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    <input type="hidden" asp-for="Coach.Id" />
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label asp-for="Coach.FullName" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input asp-for="Coach.FullName" class="form-control" placeholder="Enter full name" />
+                            </div>
+                            <span asp-validation-for="Coach.FullName" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Coach.Date" class="form-label">Birth Date</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                                <input asp-for="Coach.Date" class="form-control" type="date" />
+                            </div>
+                            <span asp-validation-for="Coach.Date" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Coach.Gender" class="form-label"></label>
+                            <select asp-for="Coach.Gender" class="form-select">
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span asp-validation-for="Coach.Gender" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Coach.PhoneNumber" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                <input asp-for="Coach.PhoneNumber" class="form-control" placeholder="Enter phone number" />
+                            </div>
+                            <span asp-validation-for="Coach.PhoneNumber" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Coach.Email" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                <input asp-for="Coach.Email" class="form-control" placeholder="Enter email address" type="email" />
+                            </div>
+                            <span asp-validation-for="Coach.Email" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Coach.Status" class="form-label"></label>
+                            <select asp-for="Coach.Status" class="form-select">
+                                <option value="">Select status</option>
+                                <option value="Active">Active</option>
+                                <option value="On Leave">On Leave</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            <span asp-validation-for="Coach.Status" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Coach.Specialization" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-award"></i></span>
+                                <input asp-for="Coach.Specialization" class="form-control" placeholder="Enter specialization" />
+                            </div>
+                            <span asp-validation-for="Coach.Specialization" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Coach.WorkingHours" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-clock"></i></span>
+                            <input asp-for="Coach.WorkingHours" class="form-control" placeholder="e.g., Mon-Fri: 9:00-17:00" />
+                        </div>
+                        <span asp-validation-for="Coach.WorkingHours" class="text-danger small"></span>
+                    </div>
+
+                    <hr class="my-4" />
+                    <h6 class="mb-3"><i class="bi bi-shield-lock me-2"></i>Account Information</h6>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Coach.Login" class="form-label">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                                <input asp-for="Coach.Login" class="form-control" placeholder="Enter username" />
+                            </div>
+                            <span asp-validation-for="Coach.Login" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Coach.Password" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-key"></i></span>
+                                <input asp-for="Coach.Password" class="form-control" placeholder="Enter password" type="password" />
+                            </div>
+                            <span asp-validation-for="Coach.Password" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-page="./Index" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i> Back to List
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save me-1"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-lg-3 d-none d-md-block">
+        <div class="card bg-light">
+            <div class="card-header bg-light">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-info-circle me-2"></i>Tips
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        All fields marked with <span class="text-danger">*</span> are required
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Email addresses must be unique in the system
+                    </li>
+                    <li>
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Passwords should be at least 8 characters long
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Add client-side validation for password strength if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form validation enhancements could be added here
+        });
+    </script>
+}

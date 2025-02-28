@@ -1,0 +1,78 @@
+﻿@page
+@model Gym.Pages.Schedules.CreateModel
+
+@{
+    ViewData["Title"] = "Add New Schedule";
+    ViewData["Subtitle"] = "Register a new schedule in your fitness hub";
+}
+
+<div class="row mb-4">
+    <div class="col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-plus-lg me-2"></i>Schedule Registration
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Schedule.SessionDateTime" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                            <input asp-for="Schedule.SessionDateTime" class="form-control" placeholder="Enter session date and time" />
+                        </div>
+                        <span asp-validation-for="Schedule.SessionDateTime" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Schedule.SessionType" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-list-task"></i></span>
+                            <input asp-for="Schedule.SessionType" class="form-control" placeholder="Enter session type" />
+                        </div>
+                        <span asp-validation-for="Schedule.SessionType" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Schedule.CoachId" class="form-label"></label>
+                        <select asp-for="Schedule.CoachId" class="form-select" asp-items="ViewBag.CoachId"></select>
+                        <span asp-validation-for="Schedule.CoachId" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Schedule.GymHallId" class="form-label"></label>
+                        <select asp-for="Schedule.GymHallId" class="form-select" asp-items="ViewBag.GymHallId"></select>
+                        <span asp-validation-for="Schedule.GymHallId" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Schedule.Capacity" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-people"></i></span>
+                            <input asp-for="Schedule.Capacity" class="form-control" placeholder="Enter capacity" />
+                        </div>
+                        <span asp-validation-for="Schedule.Capacity" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <a asp-page="./Index" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i> Back to List
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-plus-circle me-1"></i> Create Schedule
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

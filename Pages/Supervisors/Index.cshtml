@@ -1,0 +1,105 @@
+﻿@page
+@model Gym.Pages.Supervisors.IndexModel
+
+@{
+    ViewData["Title"] = "Supervisors";
+    ViewData["Subtitle"] = "Manage your supervisors";
+}
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <p class="text-muted">View, edit, and manage all supervisors in your fitness hub.</p>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-1"></i> Add New Supervisor
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Supervisor[0].FullName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Supervisor[0].DateOfBirth)</th>
+                        <th>@Html.DisplayNameFor(model => model.Supervisor[0].PhoneNumber)</th>
+                        <th>@Html.DisplayNameFor(model => model.Supervisor[0].Email)</th>
+                        <th>@Html.DisplayNameFor(model => model.Supervisor[0].Gender)</th>
+                        <th>@Html.DisplayNameFor(model => model.Supervisor[0].Status)</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Supervisor)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@Html.DisplayFor(modelItem => item.FullName)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfBirth)
+                            </td>
+                            <td>
+                                <a href="tel:@item.PhoneNumber" class="text-decoration-none">
+                                    <i class="bi bi-telephone me-1 text-muted"></i>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                </a>
+                            </td>
+                            <td>
+                                <a href="mailto:@item.Email" class="text-decoration-none">
+                                    <i class="bi bi-envelope me-1 text-muted"></i>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </a>
+                            </td>
+                            <td>
+                                <span class="badge bg-info">@Html.DisplayFor(modelItem => item.Gender)</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-success">@Html.DisplayFor(modelItem => item.Status)</span>
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" title="Edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info" title="Details">
+                                        <i class="bi bi-info-circle"></i>
+                                    </a>
+                                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Delete">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table th {
+        white-space: nowrap;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Highlight the current row when hovered
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(13, 110, 253, 0.08)';
+                });
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+}

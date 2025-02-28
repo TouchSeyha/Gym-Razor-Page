@@ -1,0 +1,62 @@
+﻿@page
+@model Gym.Pages.GymHalls.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Gym Hall";
+    ViewData["Subtitle"] = "Confirm gym hall deletion";
+}
+
+<div class="row mb-4">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-building-x me-2"></i>Delete Gym Hall
+                </h5>
+            </div>
+            <div class="card-body">
+                <h3 class="text-danger">Are you sure you want to delete this gym hall?</h3>
+                <div class="row mb-4">
+                    <div class="col-md-3 text-center mb-3 mb-md-0">
+                        <div class="avatar-lg bg-danger text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
+                            @Model.GymHall.HallName.Substring(0, 1)
+                        </div>
+                        <h5 class="mb-1">@Model.GymHall.HallName</h5>
+                        <p class="text-muted mb-0">@Model.GymHall.Location</p>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row g-0">
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-people me-2 text-muted"></i>Capacity</strong>
+                                <div class="mt-1">@Html.DisplayFor(m => m.GymHall.Capacity)</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-geo-alt me-2 text-muted"></i>Location</strong>
+                                <div class="mt-1">@Html.DisplayFor(m => m.GymHall.Location)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light">
+                <form method="post" class="d-flex justify-content-between">
+                    <input type="hidden" asp-for="GymHall.Id" />
+                    <a asp-page="./Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i> Back to List
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash me-1"></i> Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .avatar-lg {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+    }
+</style>

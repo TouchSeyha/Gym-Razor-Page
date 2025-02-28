@@ -1,0 +1,95 @@
+﻿@page
+@model Gym.Pages.Schedules.IndexModel
+
+@{
+    ViewData["Title"] = "Schedules";
+    ViewData["Subtitle"] = "Manage your schedules";
+}
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <p class="text-muted">View, edit, and manage all schedules in your fitness hub.</p>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-1"></i> Add New Schedule
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Schedule[0].SessionDateTime)</th>
+                        <th>@Html.DisplayNameFor(model => model.Schedule[0].SessionType)</th>
+                        <th>@Html.DisplayNameFor(model => model.Schedule[0].Coach)</th>
+                        <th>@Html.DisplayNameFor(model => model.Schedule[0].GymHall)</th>
+                        <th>@Html.DisplayNameFor(model => model.Schedule[0].Capacity)</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Schedule)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@Html.DisplayFor(modelItem => item.SessionDateTime)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SessionType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Coach.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GymHall.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Capacity)
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" title="Edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info" title="Details">
+                                        <i class="bi bi-info-circle"></i>
+                                    </a>
+                                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Delete">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table th {
+        white-space: nowrap;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Highlight the current row when hovered
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(13, 110, 253, 0.08)';
+                });
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+}

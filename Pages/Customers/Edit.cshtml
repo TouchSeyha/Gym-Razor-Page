@@ -1,0 +1,152 @@
+﻿@page
+@model Gym.Pages.Customers.EditModel
+
+@{
+    ViewData["Title"] = "Edit Customer";
+    ViewData["Subtitle"] = "Update customer information";
+}
+
+<div class="row mb-4">
+    <div class="col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-person-badge me-2"></i>Edit Customer
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    <input type="hidden" asp-for="Customer.Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="Customer.FullName" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input asp-for="Customer.FullName" class="form-control" placeholder="Full name" />
+                        </div>
+                        <span asp-validation-for="Customer.FullName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="Customer.DateOfBirth" class="form-label">Birth Date</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                                <input asp-for="Customer.DateOfBirth" class="form-control" type="date" />
+                            </div>
+                            <span asp-validation-for="Customer.DateOfBirth" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Customer.Gender" class="form-label"></label>
+                            <select asp-for="Customer.Gender" class="form-select">
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span asp-validation-for="Customer.Gender" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Customer.PhoneNumber" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                            <input asp-for="Customer.PhoneNumber" class="form-control" placeholder="Phone number" />
+                        </div>
+                        <span asp-validation-for="Customer.PhoneNumber" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Customer.Email" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input asp-for="Customer.Email" class="form-control" placeholder="Email address" type="email" />
+                        </div>
+                        <span asp-validation-for="Customer.Email" class="text-danger small"></span>
+                    </div>
+
+                    <hr class="my-4" />
+                    <h6 class="mb-3"><i class="bi bi-shield-lock me-2"></i>Account Information</h6>
+
+                    <div class="mb-3">
+                        <label asp-for="Customer.Login" class="form-label">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+                            <input asp-for="Customer.Login" class="form-control" placeholder="Account username" />
+                        </div>
+                        <span asp-validation-for="Customer.Login" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Customer.Password" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-key"></i></span>
+                            <input asp-for="Customer.Password" class="form-control" type="password" placeholder="Account password" />
+                        </div>
+                        <span asp-validation-for="Customer.Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <a asp-page="./Index" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i> Back to List
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save me-1"></i> Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-lg-3 d-none d-md-block">
+        <div class="card bg-light">
+            <div class="card-header bg-light">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-info-circle me-2"></i>Guidelines
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Keep the phone number in a standard format
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Use a valid email address
+                    </li>
+                    <li>
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Password should be 8+ characters
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Auto-suggest username from full name
+        document.addEventListener('DOMContentLoaded', function() {
+            const fullNameInput = document.querySelector('[asp-for="Customer.FullName"]');
+            const loginInput = document.querySelector('[asp-for="Customer.Login"]');
+            if (fullNameInput && loginInput) {
+                fullNameInput.addEventListener('blur', function() {
+                    if (!loginInput.value && this.value) {
+                        const parts = this.value.toLowerCase().split(' ');
+                        loginInput.value = parts.length > 1
+                            ? parts[0] + '.' + parts[parts.length - 1]
+                            : parts[0];
+                    }
+                });
+            }
+        });
+    </script>
+}

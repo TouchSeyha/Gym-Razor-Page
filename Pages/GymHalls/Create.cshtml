@@ -1,0 +1,66 @@
+﻿@page
+@model Gym.Pages.GymHalls.CreateModel
+
+@{
+    ViewData["Title"] = "Add New Gym Hall";
+    ViewData["Subtitle"] = "Register a new gym hall in your fitness hub";
+}
+
+<div class="row mb-4">
+    <div class="col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-plus-lg me-2"></i>Gym Hall Registration
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="GymHall.HallName" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-building"></i></span>
+                            <input asp-for="GymHall.HallName" class="form-control" placeholder="Enter hall name" />
+                        </div>
+                        <span asp-validation-for="GymHall.HallName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="GymHall.Capacity" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-people"></i></span>
+                            <input asp-for="GymHall.Capacity" class="form-control" placeholder="Enter capacity" />
+                        </div>
+                        <span asp-validation-for="GymHall.Capacity" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="GymHall.Location" class="form-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                            <input asp-for="GymHall.Location" class="form-control" placeholder="Enter location" />
+                        </div>
+                        <span asp-validation-for="GymHall.Location" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <a asp-page="./Index" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i> Back to List
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-plus-circle me-1"></i> Create Gym Hall
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
